@@ -28,7 +28,7 @@ const Login = () => {
         Don't hava account?<Link to="/register">Register</Link>
       </p>
 
-      <div>
+      <div className="icon-container">
         <FaGoogle className="alternative-login" />
         <FaGithub className="alternative-login" />
       </div>
