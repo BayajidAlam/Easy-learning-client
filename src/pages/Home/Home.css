@@ -1,0 +1,28 @@
+.home{
+  background: rgb(180, 205, 215);
+  border-radius: 8px
+}
+
+.home-lottie{
+  height: 400px;
+  width: 300px;
+}
+
+.image{
+  width: 450px;
+  padding: 3px;
+  border-radius: 10px;
+  height: 300px;
+}
+
+.my-btn{
+  border: 2px solid rgb(16, 16, 173);
+  background-color: aqua;
+  border-radius: 8px;
+  box-shadow: 5px 5px rgb(238, 157, 157);
+}
+
+.link{
+  text-decoration: none;
+  padding: 5px;
+}
