@@ -1,9 +1,9 @@
 .register-form{
-  width: 700px;
+  width: 800px;
   height: 500px;
   background-color: skyblue;
   padding: 40px 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 5px 10px #4a3cb7
 }
 
@@ -11,4 +11,12 @@
   margin: auto;
   height: 40px;
   width: 120px;
+}
+
+
+@media screen and (max-width:576px) {
+  .register-form{
+    width: 300px;
+    height: 500px;
+  }
 }

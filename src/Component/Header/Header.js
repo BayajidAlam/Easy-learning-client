@@ -1,12 +1,19 @@
 import React from "react";
+import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import Brand from "../../assets/easy-icon-13.png";
+import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import "./Header.css";
+import { FaUserAlt } from "react-icons/fa";
+import { Image } from "react-bootstrap";
 
 const Header = () => {
+
+  const { user } = useContext(AuthContext)
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="light">
       <Container>
@@ -31,10 +38,13 @@ const Header = () => {
             <Link className="link text-white" to="/login">
               LOGIN
             </Link>
+            <Link className="link">
+              {
+                user.photoURL? <Image style={{height: '40px'}} src={user.photoURL}/>:<FaUserAlt className="text-warning"/>
+              }
+            </Link>
+            
           </Nav>
-          <div>
-            <Link className="link white">Theme</Link>
-          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
