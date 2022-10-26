@@ -18,7 +18,7 @@ const Header = () => {
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="light">
       <Container>
         <div>
-          <img className="img-brand" src={Brand} alt="" />
+            <Link to='/login'><img className="img-brand" src={Brand} alt="" /></Link>
           <Navbar.Brand className="text-white" href="/">
             Easy Learn
           </Navbar.Brand>
