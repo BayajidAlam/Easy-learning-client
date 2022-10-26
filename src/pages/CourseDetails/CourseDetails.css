@@ -3,3 +3,16 @@
   height: 350px;
   width: 500px;
 }
+
+.text{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.course-btn{
+  height: 30px;
+  background: white;
+  border-radius: 5px;
+  text-decoration: none;
+  color: skyblue;
+}

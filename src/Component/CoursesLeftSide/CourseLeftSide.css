@@ -1,0 +1,9 @@
+.my-cart{
+  width: 300px;
+  height: 400px;
+  margin: 10px;
+  background: rgb(231, 173, 173);
+  padding: 15px;
+  border-radius: 10px;
+
+}

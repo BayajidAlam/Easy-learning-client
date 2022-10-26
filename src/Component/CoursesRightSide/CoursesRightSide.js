@@ -16,7 +16,11 @@ const CoursesRightSide = () => {
   return (
     <div>
         {
-          allCourse.map(course=><CourseCart key={course.id} course={course}></CourseCart>)
+          allCourse.map(course=>
+          <CourseCart 
+          key={course.id}
+          course={course}
+          ></CourseCart>)
         }
     </div>
   );
