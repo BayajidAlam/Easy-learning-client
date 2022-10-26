@@ -4,7 +4,7 @@ import './CourseDetails.css'
 
 const CourseDetails = () => {
   const courseData = useLoaderData()
-  console.log(courseData)
+  console.log(courseData.picture)
   return (
     <div className='container text-center'>
       <h2>{courseData.title}</h2>

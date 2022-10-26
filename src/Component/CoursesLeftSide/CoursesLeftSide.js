@@ -7,17 +7,18 @@ const CoursesLeftSide = () => {
   const [courses,setCourses] = useState([])
 
   useEffect(()=> {
-    fetch('http://localhost:5000/courses')
+    fetch('http://localhost:5000/category')
     .then(res => res.json())
     .then(data => setCourses(data))
   },[])
+
 
   return (
     <div>
       <h2>All Course</h2>
       <div className='course-leftside'>
         {
-          courses.map(course=><p key={course.id}><Link to={`/course/${course.id}`}>{course.name}</Link></p>)
+          courses.map(course=><p key={course.id}><Link to={`/courses/${course.id}`}>{course.name}</Link></p>)
         }
       </div>
     </div>
