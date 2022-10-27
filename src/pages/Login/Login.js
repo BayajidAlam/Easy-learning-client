@@ -8,11 +8,12 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { Toaster } from 'react-hot-toast';
+import { useState } from "react";
 
 const googleProvider = new GoogleAuthProvider()
 
 const Login = () => {
-
+  const [ error, setError ] = useState('')
   const { providerGoogleLogIn, signInExistingUser } = useContext(AuthContext)
 
   const handleSubmit = (event) => {
@@ -29,11 +30,11 @@ const Login = () => {
     providerGoogleLogIn(googleProvider)
     .then(result=>{
       const user = result.user
-      console.log(user)
       toast.success('Signed In with google Successfully')
     })
     .catch(error=>{
       console.error(error)
+      setError(error.message)
       toast.error(error.message)
     })
   }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { Row } from 'react-bootstrap';
 import { useLoaderData } from 'react-router';
 import CourseCart from '../CourseCart/CourseCart';
 
@@ -14,7 +15,7 @@ const CoursesRightSide = () => {
   },[])
 
   return (
-    <div>
+      <Row className='d-flex'> 
         {
           allCourse.map(course=>
           <CourseCart 
@@ -22,7 +23,8 @@ const CoursesRightSide = () => {
           course={course}
           ></CourseCart>)
         }
-    </div>
+      </Row>
+   
   );
 };
 

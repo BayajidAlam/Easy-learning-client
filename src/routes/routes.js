@@ -1,8 +1,8 @@
 import {createBrowserRouter} from "react-router-dom";
-import CoursesLeftSide from "../Component/CoursesLeftSide/CoursesLeftSide";
 import CoursesRightSide from "../Component/CoursesRightSide/CoursesRightSide";
 import Main from "../layout/Main";
 import Blog from "../pages/Blog/Blog";
+import CheeckOut from "../pages/CheeckOut/CheeckOut";
 import CourseDetails from "../pages/CourseDetails/CourseDetails";
 import Courses from "../pages/Courses/Courses";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
@@ -50,6 +50,10 @@ export const routes = createBrowserRouter([
       {
         path: '/courses',
         element: <CoursesRightSide></CoursesRightSide>
+      },
+      {
+        path: '/cheeckout',
+        element: <CheeckOut></CheeckOut>,
       }
     ]
   }
