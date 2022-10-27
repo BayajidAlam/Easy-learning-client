@@ -3,17 +3,17 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./Login.css";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import { GoogleAuthProvider } from "firebase/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { Toaster } from 'react-hot-toast';
 
 
 const googleProvider = new GoogleAuthProvider()
-
+const gitHubProvider = new GithubAuthProvider()
 const Login = () => {
-  const { providerGoogleLogIn, signInExistingUser } = useContext(AuthContext)
+  const { providerGoogleLogIn, signInExistingUser, githubSignIn } = useContext(AuthContext)
   const navigate = useNavigate()
   const location =useLocation()
   const from = location.state?.from?.pathname || '/'
@@ -52,6 +52,18 @@ const Login = () => {
     })
   }
 
+  const handleSignInWithGitHub = () => {
+    githubSignIn(gitHubProvider)
+    .then(result=>{
+      navigate(from,{replace: true})
+      toast.success('Successfully signed in with github')
+    })
+    .catch(error=>{
+      const errorMessage = error.message
+      toast.error(errorMessage)
+    })
+  }
+  
   return (
     <Form onSubmit={handleSubmit} className="mx-auto mt-4 my-form">
 
@@ -75,7 +87,7 @@ const Login = () => {
 
       <div className="icon-container">
         <FaGoogle onClick={handleGoogleSignIn} className="alternative-login" />
-        <FaGithub className="alternative-login" />
+        <FaGithub onClick={handleSignInWithGitHub} className="alternative-login" />
       </div>
     <Toaster></Toaster>
     </Form>

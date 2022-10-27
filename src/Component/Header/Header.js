@@ -12,20 +12,11 @@ import { Image } from "react-bootstrap";
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 import { useState } from "react";
 import Tippy from "@tippyjs/react";
+import toast from "react-hot-toast";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [darkMode, setDarkMode] = useState(true);
-
-  const handleLogOut = () => {
-    logOut()
-      .then(() => {
-        console.log("logout sucrss");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="light">
@@ -38,7 +29,7 @@ const Header = () => {
             Easy Learn
           </Navbar.Brand> */}
           <Link className="link text-white fs-3" to="/">
-            Easy Learn
+            Easy Learning
           </Link>
         </div>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -54,7 +45,7 @@ const Header = () => {
               BLOGS
             </Link>
             {user?.uid ? (
-              <Link className="link">
+              <div className="link">
                 {user?.photoURL ? (
                   <Tippy content={user.displayName}>
                     <Image
@@ -66,16 +57,13 @@ const Header = () => {
                 ) : (
                   <FaUserAlt className="text-warning" />
                 )}
-              </Link>
+              </div>
             ) : (
               <Link className="link text-white" to="/login">
                 LOGIN
               </Link>
             )}
 
-            <button onClick={handleLogOut} variant="dark">
-              LogOut
-            </button>
             <Tippy content="click in the middle for toggle">
               <div className={darkMode ? "dark-mode" : "light-mode"}>
                 <div className="icon-container">

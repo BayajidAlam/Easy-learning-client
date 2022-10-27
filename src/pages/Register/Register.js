@@ -8,12 +8,13 @@ import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import './Register.css'
 import toast from "react-hot-toast";
 import { Toaster } from 'react-hot-toast';
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Register = () => {
 
-  const { googleSignIn, providerGoogleLogIn, updateUserProfile } = useContext(AuthContext)
+  const { googleSignIn, providerGoogleLogIn, updateUserProfile, githubSignIn } = useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider()
+  const gitHubProvider = new GithubAuthProvider()
   const navigate = useNavigate()
   const location =useLocation()
   const from = location.state?.from?.pathname || '/'
@@ -50,6 +51,7 @@ const Register = () => {
       displayName: name,
       photoURL : photoURL
     }
+    console.log(profile);
     updateUserProfile(profile)
     .then(()=>{
       console.log("updated",profile)
@@ -71,6 +73,20 @@ const Register = () => {
       toast.error(error.message)
     })
   }
+
+  const handleSignInWithGitHub = () => {
+    githubSignIn(gitHubProvider)
+    .then(result=>{
+      navigate(from,{replace: true})
+      toast.success('Successfully signed in with github')
+    })
+    .catch(error=>{
+      const errorMessage = error.message
+      toast.error(errorMessage)
+    })
+  }
+
+
   return (
     <Form onSubmit={handleSubmit} className="register-form mx-auto mt-4">
 
@@ -103,7 +119,7 @@ const Register = () => {
 
       <div className="icon-container">
         <FaGoogle onClick={handleGoogleSignIn} className="alternative-login" />
-        <FaGithub className="alternative-login" />
+        <FaGithub onClick={handleSignInWithGitHub} className="alternative-login" />
       </div>
       <Toaster/>
     </Form>

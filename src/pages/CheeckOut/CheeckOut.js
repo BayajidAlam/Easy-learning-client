@@ -1,14 +1,24 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
+import toast, { Toaster } from 'react-hot-toast';
 import './CheeckOut.js.css'
 
 const CheeckOut = () => {
-  const data = useLoaderData()
-  console.log(data)
+  
+  const handlePurchage = () => {
+    toast.success("You have Purchage this course successfully!")
+  }
+
   return (
-    <div className='text-center'>
-      <p className='fs-1'>CheeckOut</p>
-    
+    <div className='main'>
+      <div className='cheek'>
+        <p className='text-center'>CheeckOut Now</p>
+        <p>Course name: </p>
+        <p>Course Price: </p>
+        <div className='text-center'>
+          <button onClick={handlePurchage} className='purchage-btn'>Purchage Now</button>
+          </div>
+      </div>
+      <Toaster/>
     </div>
   );
 };

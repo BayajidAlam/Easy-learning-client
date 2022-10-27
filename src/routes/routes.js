@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import CoursesRightSide from "../Component/CoursesRightSide/CoursesRightSide";
 import Main from "../layout/Main";
 import Blog from "../pages/Blog/Blog";
@@ -14,54 +14,53 @@ import PrivateRutes from "./PrivateRutes";
 
 export const routes = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Main></Main>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: '/',
-        element: <Home></Home>
+        path: "/",
+        element: <Home></Home>,
       },
       {
-        path: '/courses',
+        path: "/courses",
         element: <Courses></Courses>,
-        loader: () => fetch(`http://localhost:5000/category`)
+        loader: () => fetch(`https://easy-learning-server.vercel.app/category`),
       },
       {
-        path: '/courses/:id',
+        path: "/courses/:id",
         element: <CourseDetails></CourseDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/course/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`https://easy-learning-server.vercel.app/course/${params.id}`),
       },
       {
-        path: '/login',
-        element: <Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path: '/register',
-        element: <Register></Register>
+        path: "/register",
+        element: <Register></Register>,
       },
       {
-        path: '/blogs',
-        element: <Blog></Blog>
+        path: "/blogs",
+        element: <Blog></Blog>,
       },
       {
-        path: '/faq',
-        element: <PrivateRutes>
-          <Faq>
-          </Faq>
-          </PrivateRutes>
+        path: "/faq",
+        element: <Faq></Faq>,
       },
       {
-        path: '/courses',
-        element: <CoursesRightSide></CoursesRightSide>
+        path: "/courses",
+        element: <CoursesRightSide></CoursesRightSide>,
       },
       {
-        path: '/cheeckout',
-        element: 
-        <PrivateRutes>
+        path: "/cheeckout",
+        element: (
+          <PrivateRutes>
             <CheeckOut></CheeckOut>
-        </PrivateRutes>
-      }
-    ]
-  }
-])
+          </PrivateRutes>
+        ),
+      },
+    ],
+  },
+]);

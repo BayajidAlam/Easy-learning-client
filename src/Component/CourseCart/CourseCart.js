@@ -6,7 +6,7 @@ import "./CourseCart.css";
 const CourseCart = ({ course }) => {
   const { title, dispcription, picture, id } = course
   return (
-    <Col className="text-center col-lg-6">
+    <Col className="text-center col-lg-6 col-sm-12">
        
        <h3>{title}</h3>
         <img  className="cart-img img-fluid" src={picture} alt="image not found" />
