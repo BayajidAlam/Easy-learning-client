@@ -3,26 +3,26 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./Login.css";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { Toaster } from 'react-hot-toast';
-import { useState } from "react";
+
 
 const googleProvider = new GoogleAuthProvider()
 
 const Login = () => {
-  const [ error, setError ] = useState('')
   const { providerGoogleLogIn, signInExistingUser } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const location =useLocation()
+  const from = location.state?.from?.pathname || '/'
 
   const handleSubmit = (event) => {
     event.preventDefault()
     const form = event.target
     const email = form.email.value
     const password = form.password.value
-    console.log(email,password);
-
     handleSignIn(email,password)
   }
   
@@ -31,10 +31,10 @@ const Login = () => {
     .then(result=>{
       const user = result.user
       toast.success('Signed In with google Successfully')
+      navigate(from, {replace: true})
     })
     .catch(error=>{
       console.error(error)
-      setError(error.message)
       toast.error(error.message)
     })
   }
@@ -44,12 +44,14 @@ const Login = () => {
     .then(result=> {
       const user = result.user
       toast.success('Login successfully')
+      navigate(from, {replace: true})
     })
     .catch(error=> {
       const errorMessage = error.message
       toast.error(errorMessage)
     })
   }
+
   return (
     <Form onSubmit={handleSubmit} className="mx-auto mt-4 my-form">
 
@@ -68,7 +70,7 @@ const Login = () => {
       </Button>
       
       <p>
-        Don't hava account?<Link to="/register">Register</Link>
+        Don't have account?<Link to="/register">Register</Link>
       </p>
 
       <div className="icon-container">

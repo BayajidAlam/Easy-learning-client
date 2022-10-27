@@ -13,7 +13,7 @@ const CourseDetails = () => {
       <div>
       <h2>{courseData.title}</h2>
       </div>
-      <img className='course-img' src={courseData.picture} alt="" />
+      <img className='course-img img-fluid' src={courseData.picture} alt="" />
       <p className='text'>Dispcription: {courseData.dispcription}</p>
       <div className='d-flex justify-content-between'>
         <p className='text'>Duration: {courseData.duration}</p>

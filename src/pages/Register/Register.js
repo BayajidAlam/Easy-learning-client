@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import './Register.css'
 import toast from "react-hot-toast";
@@ -12,8 +12,11 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 const Register = () => {
 
-  const { googleSignIn, providerGoogleLogIn } = useContext(AuthContext)
+  const { googleSignIn, providerGoogleLogIn, updateUserProfile } = useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider()
+  const navigate = useNavigate()
+  const location =useLocation()
+  const from = location.state?.from?.pathname || '/'
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -23,8 +26,9 @@ const Register = () => {
     const email = form.email.value
     const password = form.password.value
     console.log(name,photoURL,email,password);
-
     createUser (email,password)
+    handleUpdateUserProfile(name,photoURL)
+    form.reset()
   }
 
   const createUser = (email,password) => {
@@ -32,6 +36,7 @@ const Register = () => {
     .then(result=> {
       const user = result.user
       console.log(user);
+      navigate(from, {replace: true})
       toast.success('User created Successfully!')
     })
     .catch(error=> {
@@ -40,10 +45,25 @@ const Register = () => {
     })
   }
 
+  const handleUpdateUserProfile = (name,photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL : photoURL
+    }
+    updateUserProfile(profile)
+    .then(()=>{
+      console.log("updated",profile)
+    })
+    .catch(error=>{
+      console.error(error)
+    })
+  }
+
   const handleGoogleSignIn = () => {
     providerGoogleLogIn(googleProvider)
     .then(result=> {
       const user = result.user
+      navigate(from, {replace: true})
       toast.success('Signed In with google Successfully')
     })
     .catch(error=>{

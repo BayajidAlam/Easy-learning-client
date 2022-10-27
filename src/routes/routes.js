@@ -10,6 +10,7 @@ import Faq from "../pages/Faq/Faq";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import PrivateRutes from "./PrivateRutes";
 
 export const routes = createBrowserRouter([
   {
@@ -45,7 +46,10 @@ export const routes = createBrowserRouter([
       },
       {
         path: '/faq',
-        element: <Faq></Faq>
+        element: <PrivateRutes>
+          <Faq>
+          </Faq>
+          </PrivateRutes>
       },
       {
         path: '/courses',
@@ -53,7 +57,10 @@ export const routes = createBrowserRouter([
       },
       {
         path: '/cheeckout',
-        element: <CheeckOut></CheeckOut>,
+        element: 
+        <PrivateRutes>
+            <CheeckOut></CheeckOut>
+        </PrivateRutes>
       }
     ]
   }
