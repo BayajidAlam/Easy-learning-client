@@ -11,10 +11,21 @@ import { FaUserAlt } from "react-icons/fa";
 import { Image } from "react-bootstrap";
 
 import Tippy from "@tippyjs/react";
+import { toast, Toaster } from "react-hot-toast";
 
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user,signOutUser } = useContext(AuthContext);
+
+  const handleSignOut = () =>{
+    signOutUser()
+    .then(()=>{
+
+    })
+    .catch((error)=>{
+      toast.error(error.message)
+    })
+  }
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="light">
@@ -42,7 +53,7 @@ const Header = () => {
             <Link className="link text-white" to="/blogs">
               BLOGS
             </Link>
-            {user?.uid ? (
+            {user?.uid ? <>
               <div className="link">
                 {user?.photoURL ? (
                   <Tippy content={user.displayName}>
@@ -56,15 +67,16 @@ const Header = () => {
                   <FaUserAlt className="text-warning" />
                 )}
               </div>
-            ) : (
+              <button onClick={handleSignOut} className="link btn text-white">SIGN OUT</button>
+            </> : (
               <Link className="link text-white" to="/login">
                 LOGIN
               </Link>
             )}
-
           </Nav>
         </Navbar.Collapse>
       </Container>
+      <Toaster/>
     </Navbar>
   );
 };

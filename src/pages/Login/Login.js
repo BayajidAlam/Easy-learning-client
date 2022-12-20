@@ -25,7 +25,7 @@ const Login = () => {
     const password = form.password.value
     handleSignIn(email,password)
   }
-  
+  console.log(location);
   const handleGoogleSignIn = () => {
     providerGoogleLogIn(googleProvider)
     .then(result=>{
