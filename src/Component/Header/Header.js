@@ -67,12 +67,13 @@ const Header = () => {
                   <FaUserAlt className="text-warning" />
                 )}
               </div>
-              <button onClick={handleSignOut} className="link btn text-white">SIGN OUT</button>
             </> : (
               <Link className="link text-white" to="/login">
                 LOGIN
               </Link>
             )}
+
+            {user?.uid? <button onClick={handleSignOut} className="link text-white btn p-0">SIGN OUT</button>:""}
           </Nav>
         </Navbar.Collapse>
       </Container>
