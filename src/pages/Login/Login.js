@@ -15,8 +15,8 @@ const gitHubProvider = new GithubAuthProvider()
 const Login = () => {
   const { providerGoogleLogIn, signInExistingUser, githubSignIn } = useContext(AuthContext)
   const navigate = useNavigate()
-  const location =useLocation()
-  const from = location.state?.from?.pathname || '/'
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -31,7 +31,7 @@ const Login = () => {
     .then(result=>{
       const user = result.user
       toast.success('Signed In with google Successfully')
-      navigate(from, {replace: true})
+      navigate(from, { replace: true });
     })
     .catch(error=>{
       console.error(error)
@@ -44,7 +44,7 @@ const Login = () => {
     .then(result=> {
       const user = result.user
       toast.success('Login successfully')
-      navigate(from, {replace: true})
+      navigate(from, { replace: true });
     })
     .catch(error=> {
       const errorMessage = error.message
@@ -55,7 +55,7 @@ const Login = () => {
   const handleSignInWithGitHub = () => {
     githubSignIn(gitHubProvider)
     .then(result=>{
-      navigate(from,{replace: true})
+      navigate(from, { replace: true });
       toast.success('Successfully signed in with github')
     })
     .catch(error=>{
