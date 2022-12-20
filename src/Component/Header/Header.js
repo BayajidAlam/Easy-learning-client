@@ -9,14 +9,12 @@ import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import "./Header.css";
 import { FaUserAlt } from "react-icons/fa";
 import { Image } from "react-bootstrap";
-import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
-import { useState } from "react";
+
 import Tippy from "@tippyjs/react";
-import toast from "react-hot-toast";
+
 
 const Header = () => {
   const { user } = useContext(AuthContext);
-  const [darkMode, setDarkMode] = useState(true);
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="light">
@@ -64,28 +62,6 @@ const Header = () => {
               </Link>
             )}
 
-            <Tippy content="click in the middle for toggle">
-              <div className={darkMode ? "dark-mode" : "light-mode"}>
-                <div className="icon-container">
-                  <span style={{ color: darkMode ? "gray" : "yellow" }}>
-                    <HiOutlineSun />
-                  </span>
-
-                  <div className="switch-checkbox">
-                    <label className="switch">
-                      <input
-                        type="checkbox"
-                        onChange={() => setDarkMode(!darkMode)}
-                      />
-                      <span className="slider-round"></span>
-                    </label>
-                  </div>
-                  <span style={{ color: darkMode ? "#c96dfd" : "gray" }}>
-                    <HiOutlineMoon />
-                  </span>
-                </div>
-              </div>
-            </Tippy>
           </Nav>
         </Navbar.Collapse>
       </Container>

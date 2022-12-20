@@ -54,13 +54,13 @@ export const routes = createBrowserRouter([
         element: <CoursesRightSide></CoursesRightSide>,
       },
       {
-        path: "/cheeckout",
-        element: (
+        path: "/cheeckout/:id",
+        element: 
           <PrivateRutes>
-            <CheeckOut></CheeckOut>
-          </PrivateRutes>
-        ),
-      },
+            <CheeckOut></CheeckOut>,
+          </PrivateRutes>,
+          loader: ({params}) => fetch(`https://easy-learning-server-bayajidalam.vercel.app/cheeckout/${params.id}`)
+      }
     ],
   },
 ]);

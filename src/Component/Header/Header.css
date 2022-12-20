@@ -28,6 +28,10 @@ span {
   font-size: 20px
 }
 
+.nav{
+  background-color: #F8F8F8;
+}
+
 .dark-mode {
   background-color: #224ee0;
   color: #999;

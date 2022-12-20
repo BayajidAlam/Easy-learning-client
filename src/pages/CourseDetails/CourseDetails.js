@@ -20,7 +20,7 @@ const CourseDetails = () => {
         <p className='text'>Price: {courseData.price}</p>
       </div>
       <div className='text-center'>
-        <Link to={'/cheeckout'}>  <button className='course-btn'>Get Premium Access</button></Link>
+        <Link to={`/cheeckout/${courseData.id}`}>  <button className='course-btn'>Get Premium Access</button></Link>
       </div>
     </div>
   );
